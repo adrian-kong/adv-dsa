@@ -8,6 +8,14 @@ import java.util.Comparator;
 /**
  * An implementation of the Binary Heap data structure
  * <p>
+ * Binary Heap can be compactly represented as an array.
+ * Tree representation consists of all depth filled left to right.
+ * <p>
+ * This would imply the property of parent k -> left 2k+1, right 2k+2
+ * <p>
+ * ------ k ------
+ * --- /     \ ---
+ * - 2k+1   2k+2 -
  *
  * @author Adrian Kong
  * @see <a href="https://en.wikipedia.org/wiki/Binary_heap#Heap_operations">Binary Heap</a>
@@ -21,8 +29,11 @@ public class BinaryHeap<T> extends Heap<T> {
     /**
      * Insert element into heap
      * <p>
-     * Parent p => children at index 2p+1, 2p+2
-     * Depth = log_2(i + 1)
+     * Parent at p implies children @ 2p+1, 2p+2
+     * Each depth would be log_2(i + 1) for any index i
+     * <p>
+     * Time complexity O(log n)
+     * Amortized O(1) due to percolation / restructuring
      *
      * @param elem to append to array
      */
@@ -40,6 +51,12 @@ public class BinaryHeap<T> extends Heap<T> {
         i += 1;
     }
 
+    /**
+     * Swap last element with peek and percolate downwards.
+     * Time complexity O(log n) as element may require swapping down in one branch
+     *
+     * @return
+     */
     @Override
     public T pop() {
         if (i == 0) return null;
