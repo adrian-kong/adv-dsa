@@ -43,7 +43,7 @@ public class BinaryHeapTest {
             assertTrue(heap.validate());
         }
 
-        assertEquals(0, heap.i);
+        assertEquals(0, heap.getI());
     }
 
     @Test
@@ -65,6 +65,6 @@ public class BinaryHeapTest {
             assertTrue(heap.validate());
         }
 
-        assertEquals(0, heap.i);
+        assertEquals(0, heap.getI());
     }
 }

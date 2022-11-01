@@ -2,8 +2,11 @@ package dev.datastructure.heap.impl;
 
 import dev.datastructure.heap.Heap;
 import dev.util.ArrayUtil;
+import lombok.Getter;
 
+import java.util.Arrays;
 import java.util.Comparator;
+import java.util.StringJoiner;
 
 /**
  * An implementation of the Binary Heap data structure
@@ -22,8 +25,27 @@ import java.util.Comparator;
  */
 public class BinaryHeap<T> extends Heap<T> {
 
+    /**
+     * Generic sized array
+     */
+    @Getter private final T[] array;
+
+    /**
+     * Current elements in array
+     */
+    @Getter private int i = 0;
+
+    /**
+     * Instantiates generic array and requires
+     * comparator to be provided for order
+     *
+     * @param capacity   to statically size array
+     * @param comparator to give ordered-ness
+     */
+    @SuppressWarnings("unchecked")
     public BinaryHeap(int capacity, Comparator<T> comparator) {
-        super(capacity, comparator);
+        super(comparator);
+        array = (T[]) new Object[capacity];
     }
 
     /**
@@ -55,7 +77,7 @@ public class BinaryHeap<T> extends Heap<T> {
      * Swap last element with peek and percolate downwards.
      * Time complexity O(log n) as element may require swapping down in one branch
      *
-     * @return
+     * @return highest priority element
      */
     @Override
     public T pop() {
@@ -106,5 +128,13 @@ public class BinaryHeap<T> extends Heap<T> {
             if (comparator.compare(array[j], c2) > 0) return false;
         }
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", BinaryHeap.class.getSimpleName() + "[", "]")
+                .add("array=" + Arrays.toString(array))
+                .add("i=" + i)
+                .toString();
     }
 }

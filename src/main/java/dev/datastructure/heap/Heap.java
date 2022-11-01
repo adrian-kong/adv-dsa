@@ -25,27 +25,11 @@ public abstract class Heap<T> implements IHeap<T> {
     protected final Comparator<T> comparator;
 
     /**
-     * Generic sized array
-     */
-    protected final T[] array;
-
-    /**
-     * Current elements in array
-     */
-    protected int i = 0;
-
-    /**
      * Heap constructor
-     * <p>
-     * Instantiates generic array and requires
-     * comparator to be provided for order
      *
-     * @param capacity   to statically size array
      * @param comparator to give ordered-ness
      */
-    @SuppressWarnings("unchecked")
-    public Heap(int capacity, Comparator<T> comparator) {
-        this.array = (T[]) new Object[capacity];
+    public Heap(Comparator<T> comparator) {
         this.comparator = comparator;
     }
 
@@ -59,11 +43,4 @@ public abstract class Heap<T> implements IHeap<T> {
         return false;
     }
 
-    @Override
-    public String toString() {
-        return new StringJoiner(", ", Heap.class.getSimpleName() + "[", "]")
-                .add("array=" + Arrays.toString(array))
-                .add("i=" + i)
-                .toString();
-    }
 }
