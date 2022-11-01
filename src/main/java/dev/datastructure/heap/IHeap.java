@@ -1,11 +1,13 @@
 package dev.datastructure.heap;
 
+import dev.IValidator;
+
 /**
  * Heap signature
  *
  * @param <T> type
  */
-public interface IHeap<T> {
+public interface IHeap<T> extends IValidator {
 
     void insert(T item);
 

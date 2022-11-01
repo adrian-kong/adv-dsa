@@ -35,11 +35,12 @@ public class BinaryHeap<T> extends Heap<T> {
         while (comparator.compare(array[parent], elem) > 0) { // bubble up, amortized O(1), worst case O(log n)
             ArrayUtil.swapElem(array, tmp_i, parent);
             tmp_i = parent;
-            parent /= 2;
+            parent = (tmp_i - 1) / 2;
         }
         i += 1;
     }
 
+    @Override
     public T pop() {
         if (i == 0) return null;
         T peek = array[0];
@@ -71,7 +72,22 @@ public class BinaryHeap<T> extends Heap<T> {
         return peek;
     }
 
+    @Override
     public T peek() {
         return i == 0 ? null : array[0];
+    }
+
+    @Override
+    public boolean validate() {
+        for (int j = 0; j < this.i; j++) {
+            if (this.i <= 2 * j + 1) break;
+            T c1 = array[2 * j + 1];
+            if (comparator.compare(array[j], c1) > 0) return false;
+
+            if (this.i <= 2 * j + 2) break;
+            T c2 = array[2 * j + 2];
+            if (comparator.compare(array[j], c2) > 0) return false;
+        }
+        return true;
     }
 }

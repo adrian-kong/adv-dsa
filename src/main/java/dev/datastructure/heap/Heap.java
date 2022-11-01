@@ -23,6 +23,10 @@ public abstract class Heap<T> implements IHeap<T> {
 
     @Override public abstract T peek();
 
+    @Override public boolean validate() {
+        return false;
+    }
+
     @Override
     public String toString() {
         return new StringJoiner(", ", Heap.class.getSimpleName() + "[", "]")
