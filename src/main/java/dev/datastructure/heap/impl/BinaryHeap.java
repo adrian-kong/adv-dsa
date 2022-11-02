@@ -42,10 +42,9 @@ public class BinaryHeap<T> extends Heap<T> {
      * @param capacity   to statically size array
      * @param comparator to give ordered-ness
      */
-    @SuppressWarnings("unchecked")
     public BinaryHeap(int capacity, Comparator<T> comparator) {
         super(comparator);
-        array = (T[]) new Object[capacity];
+        array = ArrayUtil.genericFixedArray(capacity);
     }
 
     /**
@@ -83,9 +82,8 @@ public class BinaryHeap<T> extends Heap<T> {
     public T pop() {
         if (i == 0) return null;
         T peek = array[0];
-        array[0] = array[i - 1];
-        array[i - 1] = null;
-        i -= 1;
+        array[0] = array[--i];
+        array[i] = null;
 
         int tmp_i = 0, left, right;
         boolean checkChild;

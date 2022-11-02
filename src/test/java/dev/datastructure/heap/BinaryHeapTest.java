@@ -4,12 +4,20 @@ import dev.datastructure.heap.impl.BinaryHeap;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class BinaryHeapTest {
+
+    static {
+        ClassLoader.getSystemClassLoader().setDefaultAssertionStatus(true);
+    }
 
     public static void main(String[] args) {
         var heap = new BinaryHeap<>(4, Integer::compare);
@@ -29,6 +37,7 @@ public class BinaryHeapTest {
     public void testIntegerBinaryHeap() {
         var heap = new BinaryHeap<>(20, Integer::compare);
 
+        // [1, 2, 2, 2, 3, 3, 4, 5, 5, 7] ascending order, min heap
         int[] arr = new int[]{5, 3, 2, 5, 7, 2, 3, 4, 1, 2};
 
         for (int i : arr) {
