@@ -26,12 +26,13 @@ All dependencies are optional
 
 GitHub Actions also included to verify some deterministic tests.
 
-Comments are generally avoided for lean code. (Personally more readable, besides *exceptional* reasons)
+Comments are generally avoided for lean code
 
 Since Java is not tail call optimized, implementations follow strictly an iterative approach (IIRC, [Church Turing
 thesis](https://en.wikipedia.org/wiki/Church%E2%80%93Turing_thesis))
 
 - Heap
     - [x] Binary Heap
-    - [ ] Binomial Heap
+    - [x] Binomial Heap
+      - implemented using pointers + mostly mutating, maybe harder to read 
     - [ ] Fibonacci Heap
