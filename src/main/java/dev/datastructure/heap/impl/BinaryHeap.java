@@ -42,10 +42,9 @@ public class BinaryHeap<T> extends Heap<T> {
      * @param capacity   to statically size array
      * @param comparator to give ordered-ness
      */
-    @SuppressWarnings("unchecked")
     public BinaryHeap(int capacity, Comparator<T> comparator) {
         super(comparator);
-        array = (T[]) new Object[capacity];
+        array = ArrayUtil.genericFixedArray(capacity);
     }
 
     /**
@@ -65,7 +64,7 @@ public class BinaryHeap<T> extends Heap<T> {
         array[i] = elem;
 
         int tmp_i = i, parent = (tmp_i - 1) / 2; // odd numbers are floored
-        while (comparator.compare(array[parent], elem) > 0) { // bubble up, amortized O(1), worst case O(log n)
+        while (precedenceOver(elem, array[parent])) { // bubble up, amortized O(1), worst case O(log n)
             ArrayUtil.swapElem(array, tmp_i, parent);
             tmp_i = parent;
             parent = (tmp_i - 1) / 2;
@@ -83,9 +82,8 @@ public class BinaryHeap<T> extends Heap<T> {
     public T pop() {
         if (i == 0) return null;
         T peek = array[0];
-        array[0] = array[i - 1];
-        array[i - 1] = null;
-        i -= 1;
+        array[0] = array[--i];
+        array[i] = null;
 
         int tmp_i = 0, left, right;
         boolean checkChild;
@@ -121,11 +119,11 @@ public class BinaryHeap<T> extends Heap<T> {
         for (int j = 0; j < this.i; j++) {
             if (this.i <= 2 * j + 1) break;
             T c1 = array[2 * j + 1];
-            if (comparator.compare(array[j], c1) > 0) return false;
+            if (precedenceOver(c1, array[j])) return false;
 
             if (this.i <= 2 * j + 2) break;
             T c2 = array[2 * j + 2];
-            if (comparator.compare(array[j], c2) > 0) return false;
+            if (precedenceOver(c2, array[j])) return false;
         }
         return true;
     }

@@ -33,6 +33,15 @@ public abstract class Heap<T> implements IHeap<T> {
         this.comparator = comparator;
     }
 
+    /**
+     * @param o1 item 1
+     * @param o2 item 2
+     * @return whether item 1 has precedence over item 2 given the comparator
+     */
+    protected boolean precedenceOver(T o1, T o2) {
+        return comparator.compare(o1, o2) < 0;
+    }
+
     @Override public abstract void insert(T item);
 
     @Override public abstract T pop();

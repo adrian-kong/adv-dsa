@@ -8,4 +8,9 @@ public class ArrayUtil {
         arr[b] = tmp;
     }
 
+    @SuppressWarnings("unchecked")
+    public static <T> T[] genericFixedArray(int cap) {
+        return (T[]) new Object[cap];
+    }
+
 }
