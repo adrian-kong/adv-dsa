@@ -177,6 +177,7 @@ public class BinomialHeap<T> extends Heap<T> {
      *
      * @return pointer array corresponding to their depth
      */
+    @SuppressWarnings("unchecked")
     public BinomialHeapNode<T>[] binaryRepr() {
         BinomialHeapNode<T> curr = ptr;
         while (curr.getRight() != null) {
