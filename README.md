@@ -2,14 +2,6 @@
 
 ![badge](https://github.com/adrian-kong/adv-dsa/actions/workflows/ci.yaml/badge.svg)
 
-## Motivation
-
-This repo is motivated by my rusty java skills even though being my main language, the urge to implement my very own DSA
-library to appreciate these underlying data structures and algorithms, being accustomed to importing without fully
-understanding minor implementation details.
-
-#### Mainly, this project is fuelled by a conversation in which demonstrated my inadequacy in teaching / conveying simple internal data structures coherently (how does a priority queue work? - which drives the Heap implementation)
-
 ## Requirements
 
 - Java 19
